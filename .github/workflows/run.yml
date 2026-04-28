@@ -1,20 +1,23 @@
-name: cicd-documentation
+name: Unit Tests CI
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ "main" ]
 
 jobs:
-  run:
-    name: 🚀 Run
+  build-and-test:
     runs-on: ubuntu-latest
-    steps:
-      - name: 📥 Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: 🚀 Run
-        shell: bash
-        run: |
-          cd laboratories/cicd-documentation
-          python3 main.py
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Run unit tests
+      run: |
+        cd laboratories/cicd-documentation
+        python -m unittest test_tree.py
