@@ -85,4 +85,3 @@ class Tree:
             self._printPostorderTree(node.left)
             self._printPostorderTree(node.right)
             print(str(node.data) + ' ')
-
