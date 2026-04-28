@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Install Doxygen
       run: sudo apt-get update && sudo apt-get install -y doxygen
@@ -19,12 +19,11 @@ jobs:
     - name: Run Doxygen
       run: |
         cd laboratories/cicd-documentation
-        # Dacă nu există deja un Doxyfile, generăm unul default rapid
         if [ ! -f Doxyfile ]; then doxygen -g; fi
         doxygen Doxyfile
 
     - name: Upload Documentation Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: doxygen-docs
         path: laboratories/cicd-documentation/html/
